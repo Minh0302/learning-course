@@ -318,25 +318,83 @@
           </li>
           <li>
             <a href="{{url('admin/teacher/show')}}">
-              <i class="bi bi-circle"></i><span>Danh sách giáo viên</span>
+              <i class="bi bi-circle"></i><span>Quản lý giáo viên</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{url('admin/teacher/list')}}">
+              <i class="bi bi-circle"></i><span>Danh sách giáo viên </span>
             </a>
           </li>
         </ul>
       </li><!-- End Components Nav -->
       @endhasrole
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Bài giảng</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" data-bs-target="#components-nav3" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Tổng quát</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav3" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{url('admin/teacher/assign')}}">
-              <i class="bi bi-circle"></i><span>Thêm bài giảng</span>
+            <a href="{{route('overview.create')}}">
+              <i class="bi bi-circle"></i><span>Thêm giới thiệu</span>
             </a>
           </li>
           <li>
-            <a href="{{url('admin/teacher/show')}}">
-              <i class="bi bi-circle"></i><span>Danh sách bài giảng</span>
+            <a href="{{route('overview.index')}}">
+              <i class="bi bi-circle"></i><span>Danh sách</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Bài học</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{route('lecture.create')}}">
+              <i class="bi bi-circle"></i><span>Thêm bài học</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{route('lecture.index')}}">
+              <i class="bi bi-circle"></i><span>Danh sách bài học</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav5" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Tài liệu</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav5" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{route('document.create')}}">
+              <i class="bi bi-circle"></i><span>Thêm tài liệu</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{route('document.index')}}">
+              <i class="bi bi-circle"></i><span>Danh sách tài liệu</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav4" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Câu hỏi</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav4" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{route('question.create')}}">
+              <i class="bi bi-circle"></i><span>Thêm câu hỏi</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{route('question.index')}}">
+              <i class="bi bi-circle"></i><span>Danh sách câu hỏi</span>
             </a>
           </li>
         </ul>

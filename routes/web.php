@@ -5,6 +5,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\OverviewController;
+use App\Http\Controllers\LectureController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +22,9 @@ use App\Http\Controllers\TeacherController;
 */
 
 Route::get('/',[HomeController::class,'index']);
+Route::get('/khoa-hoc/{slug}/{id}',[HomeController::class,'detail_course']);
+
+
 Route::get('/admin',[AdminController::class,'index']);
 Route::get('/admin/register',[AdminController::class,'register']);
 Route::post('/admin-register',[AdminController::class,'admin_register']);
@@ -27,12 +34,16 @@ Route::get('/admin-logout',[AdminController::class,'admin_logout']);
 Route::post('/admin/teacher-assign',[AdminController::class,'teacher_assign']);
 
 // Authentication role
+Route::get('/admin/teacher/assign',[AdminController::class,'assign']);
+Route::get('/admin/teacher/show',[AdminController::class,'show']);
+Route::post('/assign-roles',[AdminController::class,'assign_roles']);
+Route::get('/admin/teacher/list',[AdminController::class,'list']);
 
-
-Route::get('/admin/teacher/assign',[TeacherController::class,'assign']);
-Route::get('/admin/teacher/show',[TeacherController::class,'show']);
-Route::post('/assign-roles',[TeacherController::class,'assign_roles']);
 
 
 Route::resource('/admin/courses',CourseController::class);
+Route::resource('/admin/overview',OverviewController::class);
+Route::resource('/admin/lecture',LectureController::class);
+Route::resource('/admin/question',QuestionController::class);
+Route::resource('/admin/document',DocumentController::class);
 // Route::resource('/admin/teacher',TeacherController::class);

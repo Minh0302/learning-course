@@ -28,4 +28,7 @@ class Admin extends Authenticatable
     public function hasRole($role){
         return null != $this->roles()->where("roles_name", $role)->first();
     }
+    public function teacher_course(){
+        return $this->hasMany('App\Models\TeacherCourse');
+    }
 }

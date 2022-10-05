@@ -12,37 +12,37 @@
     <title>Edubin - LMS Education HTML Template</title>
     
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="frontend/images/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="{{asset('../frontend/images/favicon.png')}}" type="image/png">
 
     <!--====== Slick css ======-->
-    <link rel="stylesheet" href="frontend/css/slick.css">
+    <link rel="stylesheet" href="{{asset('../frontend/css/slick.css')}}">
 
     <!--====== Animate css ======-->
-    <link rel="stylesheet" href="frontend/css/animate.css">
+    <link rel="stylesheet" href="{{asset('../frontend/css/animate.css')}}">
     
     <!--====== Nice Select css ======-->
-    <link rel="stylesheet" href="frontend/css/nice-select.css">
+    <link rel="stylesheet" href="{{asset('../frontend/css/nice-select.css')}}">
     
     <!--====== Nice Number css ======-->
-    <link rel="stylesheet" href="frontend/css/jquery.nice-number.min.css">
+    <link rel="stylesheet" href="{{asset('../frontend/css/jquery.nice-number.min.css')}}">
 
     <!--====== Magnific Popup css ======-->
-    <link rel="stylesheet" href="frontend/css/magnific-popup.css">
+    <link rel="stylesheet" href="{{asset('../frontend/css/magnific-popup.css')}}">
 
     <!--====== Bootstrap css ======-->
-    <link rel="stylesheet" href="frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('../frontend/css/bootstrap.min.css')}}">
     
     <!--====== Fontawesome css ======-->
-    <link rel="stylesheet" href="frontend/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('../frontend/css/font-awesome.min.css')}}">
     
     <!--====== Default css ======-->
-    <link rel="stylesheet" href="frontend/css/default.css">
+    <link rel="stylesheet" href="{{asset('../frontend/css/default.css')}}">
     
     <!--====== Style css ======-->
-    <link rel="stylesheet" href="frontend/css/style.css">
+    <link rel="stylesheet" href="{{asset('../frontend/css/style.css')}}">
     
     <!--====== Responsive css ======-->
-    <link rel="stylesheet" href="frontend/css/responsive.css">
+    <link rel="stylesheet" href="{{asset('../frontend/css/responsive.css')}}">
   
   
 </head>
@@ -76,8 +76,8 @@
                     <div class="col-lg-6">
                         <div class="header-contact text-lg-left text-center">
                             <ul>
-                                <li><img src="frontend/images/all-icon/map.png" alt="icon"><span>127/5 Mark street, New york</span></li>
-                                <li><img src="frontend/images/all-icon/email.png" alt="icon"><span>info@yourmail.com</span></li>
+                                <li><img src="{{asset('../frontend/images/all-icon/map.png')}}" alt="icon"><span>127/5 Mark street, New york</span></li>
+                                <li><img src="{{asset('../frontend/images/all-icon/email.png')}}" alt="icon"><span>info@yourmail.com</span></li>
                             </ul>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                     <div class="col-lg-4 col-md-4">
                         <div class="logo">
                             <a href="index-2.html">
-                                <img src="frontend/images/logo.png" alt="Logo">
+                                <img src="{{asset('../frontend/images/logo.png')}}" alt="Logo">
                             </a>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                         <div class="support-button float-right d-none d-md-block">
                             <div class="support float-left">
                                 <div class="icon">
-                                    <img src="frontend/images/all-icon/support.png" alt="icon">
+                                    <img src="{{asset('../frontend/images/all-icon/support.png')}}" alt="icon">
                                 </div>
                                 <div class="cont">
                                     <p>Need Help? call us free</p>
@@ -238,7 +238,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-about mt-40">
                             <div class="logo">
-                                <a href="#"><img src="frontend/images/logo-2.png" alt="Logo"></a>
+                                <a href="#"><img src="{{asset('../frontend/images/logo-2.png')}}" alt="Logo"></a>
                             </div>
                             <p>Gravida nibh vel velit auctor aliquetn quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate.</p>
                             <ul class="mt-20">
@@ -355,43 +355,43 @@
     
     
     <!--====== jquery js ======-->
-    <script src="frontend/js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="frontend/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="{{asset('../frontend/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+    <script src="{{asset('../frontend/js/vendor/jquery-1.12.4.min.js')}}"></script>
 
     <!--====== Bootstrap js ======-->
-    <script src="frontend/js/bootstrap.min.js"></script>
+    <script src="{{asset('../frontend/js/bootstrap.min.js')}}"></script>
     
     <!--====== Slick js ======-->
-    <script src="frontend/js/slick.min.js"></script>
+    <script src="{{asset('../frontend/js/slick.min.js')}}"></script>
     
     <!--====== Magnific Popup js ======-->
-    <script src="frontend/js/jquery.magnific-popup.min.js"></script>
+    <script src="{{asset('../frontend/js/jquery.magnific-popup.min.js')}}"></script>
     
     <!--====== Counter Up js ======-->
-    <script src="frontend/js/waypoints.min.js"></script>
-    <script src="frontend/js/jquery.counterup.min.js"></script>
+    <script src="{{asset('../frontend/js/waypoints.min.js')}}"></script>
+    <script src="{{asset('../frontend/js/jquery.counterup.min.js')}}"></script>
     
     <!--====== Nice Select js ======-->
-    <script src="frontend/js/jquery.nice-select.min.js"></script>
+    <script src="{{asset('../frontend/js/jquery.nice-select.min.js')}}"></script>
     
     <!--====== Nice Number js ======-->
-    <script src="frontend/js/jquery.nice-number.min.js"></script>
+    <script src="{{asset('../frontend/js/jquery.nice-number.min.js')}}"></script>
     
     <!--====== Count Down js ======-->
-    <script src="frontend/js/jquery.countdown.min.js"></script>
+    <script src="{{asset('../frontend/js/jquery.countdown.min.js')}}"></script>
     
     <!--====== Validator js ======-->
-    <script src="frontend/js/validator.min.js"></script>
+    <script src="{{asset('../frontend/js/validator.min.js')}}"></script>
     
     <!--====== Ajax Contact js ======-->
-    <script src="frontend/js/ajax-contact.js"></script>
+    <script src="{{asset('../frontend/js/ajax-contact.js')}}"></script>
     
     <!--====== Main js ======-->
-    <script src="frontend/js/main.js"></script>
+    <script src="{{asset('../frontend/js/main.js')}}"></script>
     
     <!--====== Map js ======-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
-    <script src="frontend/js/map-script.js"></script>
+    <script src="{{asset('../frontend/js/map-script.js')}}"></script>
 
 </body>
 </html>

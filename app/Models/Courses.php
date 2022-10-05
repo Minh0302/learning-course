@@ -14,7 +14,7 @@ class Courses extends Model
     ];
     protected $primaryKey = 'id';
     protected $table = 'courses';
-    // public function product(){
-    //     return $this->hasMany('App\Models\Product');
-    // }
+    public function teacher_course(){
+        return $this->hasMany('App\Models\TeacherCourse');
+    }
 }

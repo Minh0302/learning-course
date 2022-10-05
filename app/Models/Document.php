@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TeacherCourse extends Model
+class Document extends Model
 {
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'teacher_id','course_id'
+        'lecture_id','document_text','document_video','document_image'
     ];
     protected $primaryKey = 'id';
-    protected $table = 'teacher_course';
-    public function admin(){
-        return $this->belongsTo('App\Models\Admin','teacher_id','id');
-    }
+    protected $table = 'document_course';
 }

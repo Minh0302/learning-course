@@ -8,6 +8,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
 use App\Models\Roles;
+use App\Models\Courses;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 use Auth;
@@ -48,25 +49,6 @@ class AdminController extends Controller
         Toastr::success('Đăng kí thành công!', 'Thành công');
         return redirect("/admin");
     }
-    // public function admin_dashboard(Request $request){
-    //     $data = $request->all();
-    //     $admin_email = $data['admin_email'];
-    //     $admin_password  = md5($request->admin_password);
-    //     $login = Admin::where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
-
-    //     if($login){
-    //         $login_count = $login->count();
-    //          if($login_count>0){
-    //             Session::put('admin_name',$login->admin_name);
-    //             Session::put('admin_id',$login->admin_id);
-    //             return Redirect::to('/admin/dashboard');
-    //             }
-    //         }
-    //         else{
-    //                  Session::put('message','Email or Password Incorrect');
-    //                  return Redirect::to('/admin');
-    //     }
-    // }
     public function admin_dashboard(Request $request) {
         $data = $request->validate([
             "admin_email" => "required|max:255",
@@ -80,12 +62,6 @@ class AdminController extends Controller
             return redirect('/admin');
         }
     }
-    // public function admin_logout(){
-    //     // $this->AuthLogin();
-    //     Session::put('admin_name',null);
-    //     Session::put('admin_id',null);
-    //     return Redirect::to('/admin');
-    // }
     public function admin_logout(){
         Auth::logout();
         return Redirect::to('/admin');
@@ -105,5 +81,33 @@ class AdminController extends Controller
             }
             // $teacher_course->save();
         }
+    }
+    public function show(){
+        $admin = Admin::with('roles')->orderBy('id','DESC')->get();
+        return view('admin.teacher.index')->with(compact('admin'));
+    }
+    public function list(){
+        // $admin = Admin::with('roles')->whereNotIn("id", ['1'])->orderBy('id','DESC')->get();
+        $teacher = TeacherCourse::with('admin')->whereNotIn("teacher_id", ['1'])->orderBy('id','DESC')->get();
+        // $teacher  = DB::table('teacher_course')->join('admin', 'teacher_course.teacher_id ', '=', 'admin.id')->get();
+        return view('admin.teacher.list')->with(compact('teacher'));
+    }
+    public function assign(){
+        $courses = Courses::all();
+        $teachers = Admin::whereNotIn("id", ['1'])->get();
+        return view('admin.teacher.assign')->with(compact('courses','teachers'));;
+
+    }
+    public function assign_roles(Request $request){
+        $user = Admin::where('admin_email', $request->admin_email)->first();
+        $user->roles()->detach();
+        if($request->author_role){
+            $user->roles()->attach(Roles::where('roles_name', 'author')->first());
+        }
+        if($request->admin_role){
+            $user->roles()->attach(Roles::where('roles_name', 'admin')->first());
+        }
+        Toastr::success('Assign roles thành công!', 'Thành công');
+        return redirect()->back();
     }
 }

@@ -28,37 +28,27 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Tên giáo viên</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Phone</th>
-                                    <th scope="col">Admin</th>
-                                    <th scope="col">Author</th>
-                                    <th scope="col">User</th>
+                                    <th scope="col">Khoá học</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php 
+                                @php
                                 $i=1;
-                                @endphp 
-                                @foreach($admin as $key => $user)
-                                <form method="post" action="{{url('assign-roles')}}">
-                                    @csrf
-                                    <tr>
-                                        <th scope="row">{{$i++}}</th>
-                                        <td>{{$user->admin_name}}</td>
-                                        <td>
-                                            {{$user->admin_email}}
-                                            <input type="hidden" name="admin_email" value="{{$user->admin_email}}">
-                                        </td>
-                                        <td>{{$user->admin_phone}}</td>
-                                        <td><input type="checkbox" name="admin_role" {{$user->hasRole('admin') ? 'checked' : ''}}></td>
-                                        <td><input type="checkbox" name="author_role" {{$user->hasRole('author') ? 'checked' : ''}}></td>
-                                        <td>
-                                        <input type="submit" value="Assign roles" class="btn btn-sm btn-secondary">
-                                        </td>
-                                    </tr>
-                                </form>
+                                @endphp
+                                @foreach($teacher as $key => $user)
+                                <tr>
+                                    <th scope="row">{{$i++}}</th>
+                                    <td>{{$user->admin->admin_name}}</td>
+                                    <td>
+                                        {{$user->course_id }}
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Chi tiết" class="btn btn-sm btn-secondary">
+                                    </td>
+                                </tr>
                                 @endforeach
+                                </form>
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
