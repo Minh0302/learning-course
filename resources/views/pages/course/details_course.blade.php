@@ -166,9 +166,10 @@
                             <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                                 <div class="reviews-cont">
                                     <div class="title">
-                                        <h6>Student Reviews</h6>
+                                        <h6>Học sinh Reviews</h6>
                                     </div>
                                     <ul>
+                                        @foreach($comments as $comment)
                                         <li>
                                             <div class="singel-reviews">
                                                 <div class="reviews-author">
@@ -176,12 +177,12 @@
                                                         <img src="{{asset('../frontend/images/review/r-1.jpg')}}" alt="Reviews">
                                                     </div>
                                                     <div class="author-name">
-                                                        <h6>Bobby Aktar</h6>
-                                                        <span>April 03, 2019</span>
+                                                        <h6>{{$comment->student_name}}</h6>
+                                                        <span>{{$comment->date}}</span>
                                                     </div>
                                                 </div>
                                                 <div class="reviews-description pt-20">
-                                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
+                                                    <p>{{$comment->note}}</p>
                                                     <div class="rating">
                                                         <ul>
                                                             <li><i class="fa fa-star"></i></li>
@@ -190,78 +191,30 @@
                                                             <li><i class="fa fa-star"></i></li>
                                                             <li><i class="fa fa-star"></i></li>
                                                         </ul>
-                                                        <span>/ 5 Star</span>
+                                                        <!-- <span>/ 5 Star</span> -->
                                                     </div>
                                                 </div>
                                             </div> <!-- singel reviews -->
                                         </li>
-                                        <li>
-                                            <div class="singel-reviews">
-                                                <div class="reviews-author">
-                                                    <div class="author-thum">
-                                                        <img src="{{asset('../frontend/images/review/r-2.jpg')}}" alt="Reviews">
-                                                    </div>
-                                                    <div class="author-name">
-                                                        <h6>Humayun Ahmed</h6>
-                                                        <span>April 13, 2019</span>
-                                                    </div>
-                                                </div>
-                                                <div class="reviews-description pt-20">
-                                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
-                                                    <div class="rating">
-                                                        <ul>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                        <span>/ 5 Star</span>
-                                                    </div>
-                                                </div>
-                                            </div> <!-- singel reviews -->
-                                        </li>
-                                        <li>
-                                            <div class="singel-reviews">
-                                                <div class="reviews-author">
-                                                    <div class="author-thum">
-                                                        <img src="{{asset('../frontend/images/review/r-3.jpg')}}" alt="Reviews">
-                                                    </div>
-                                                    <div class="author-name">
-                                                        <h6>Tania Aktar</h6>
-                                                        <span>April 20, 2019</span>
-                                                    </div>
-                                                </div>
-                                                <div class="reviews-description pt-20">
-                                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
-                                                    <div class="rating">
-                                                        <ul>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                        <span>/ 5 Star</span>
-                                                    </div>
-                                                </div>
-                                            </div> <!-- singel reviews -->
-                                        </li>
+                                        @endforeach
                                     </ul>
                                     <div class="title pt-15">
-                                        <h6>Leave A Comment</h6>
+                                        <h6>Bình Luận</h6>
                                     </div>
                                     <div class="reviews-form">
-                                        <form action="#">
+                                        <form action="{{url('comment-teacher')}}" method="POST">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-singel">
-                                                        <input type="text" placeholder="Fast name">
+                                                        <input type="text" placeholder="Tên" name="student_name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-singel">
-                                                        <input type="text" placeholder="Last Name">
+                                                        @foreach($details as $detail)
+                                                        <input type="hidden" value="{{$detail->id}}" name="teacher_id">
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -280,12 +233,12 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="form-singel">
-                                                        <textarea placeholder="Comment"></textarea>
+                                                        <textarea type="text" placeholder="Comment" name="note"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="form-singel">
-                                                        <button type="button" class="main-btn">Post Comment</button>
+                                                        <button type="submit" class="main-btn">Thêm bình luận</button>
                                                     </div>
                                                 </div>
                                             </div> <!-- row -->
@@ -371,11 +324,12 @@
                         <h3>Releted Courses</h3>
                     </div>
                     <div class="row">
+                        @foreach ($course_related as $related)
                         <div class="col-md-6">
                             <div class="singel-course mt-30">
                                 <div class="thum">
                                     <div class="image">
-                                        <img src="{{asset('../frontend/images/course/cu-2.jpg')}}" alt="Course">
+                                        <img src="{{asset('./uploads/'.$related->overview_img)}}" alt="Course">
                                     </div>
                                     <div class="price">
                                         <span>Free</span>
@@ -389,9 +343,9 @@
                                         <li><i class="fa fa-star"></i></li>
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
-                                    <span>(20 Reviws)</span>
+                                    <span>(20 Reviws)</span><br>
                                     <a href="courses-singel.html">
-                                        <h4>Learn basis javascirpt from start for beginner</h4>
+                                        <h4>{{$related->course_id}}</h4>
                                     </a>
                                     <div class="course-teacher">
                                         <div class="thum">
@@ -399,7 +353,7 @@
                                         </div>
                                         <div class="name">
                                             <a href="#">
-                                                <h6>Mark anthem</h6>
+                                                <h6>{{$related->admin_name}}</h6>
                                             </a>
                                         </div>
                                         <div class="admin">
@@ -412,47 +366,7 @@
                                 </div>
                             </div> <!-- singel course -->
                         </div>
-                        <div class="col-md-6">
-                            <div class="singel-course mt-30">
-                                <div class="thum">
-                                    <div class="image">
-                                        <img src="{{asset('../frontend/images/course/cu-1.jpg')}}" alt="Course">
-                                    </div>
-                                    <div class="price">
-                                        <span>Free</span>
-                                    </div>
-                                </div>
-                                <div class="cont">
-                                    <ul>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
-                                    <span>(20 Reviws)</span>
-                                    <a href="courses-singel.html">
-                                        <h4>Learn basis javascirpt from start for beginner</h4>
-                                    </a>
-                                    <div class="course-teacher">
-                                        <div class="thum">
-                                            <a href="#"><img src="{{asset('../frontend/images/course/teacher/t-3.jpg')}}" alt="teacher"></a>
-                                        </div>
-                                        <div class="name">
-                                            <a href="#">
-                                                <h6>Mark anthem</h6>
-                                            </a>
-                                        </div>
-                                        <div class="admin">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-user"></i><span>31</span></a></li>
-                                                <li><a href="#"><i class="fa fa-heart"></i><span>10</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- singel course -->
-                        </div>
+                        @endforeach
                     </div> <!-- row -->
                 </div> <!-- releted courses -->
             </div>

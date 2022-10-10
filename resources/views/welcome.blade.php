@@ -43,6 +43,7 @@
     
     <!--====== Responsive css ======-->
     <link rel="stylesheet" href="{{asset('../frontend/css/responsive.css')}}">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
   
   
 </head>
@@ -69,26 +70,6 @@
     <!--====== HEADER PART START ======-->
     
     <header id="header-part">
-       
-        <div class="header-top d-none d-lg-block">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="header-contact text-lg-left text-center">
-                            <ul>
-                                <li><img src="{{asset('../frontend/images/all-icon/map.png')}}" alt="icon"><span>127/5 Mark street, New york</span></li>
-                                <li><img src="{{asset('../frontend/images/all-icon/email.png')}}" alt="icon"><span>info@yourmail.com</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="header-opening-time text-lg-right text-center">
-                            <p>Opening Hours : Monday to Saturay - 8 Am to 5 Pm</p>
-                        </div>
-                    </div>
-                </div> <!-- row -->
-            </div> <!-- container -->
-        </div> <!-- header top -->
         
         <div class="header-logo-support pt-30 pb-30">
             <div class="container">
@@ -102,18 +83,32 @@
                     </div>
                     <div class="col-lg-8 col-md-8">
                         <div class="support-button float-right d-none d-md-block">
+                        <?php
+                            $name = Session::get('customer_name');
+                            if($name){
+                        ?>
                             <div class="support float-left">
                                 <div class="icon">
                                     <img src="{{asset('../frontend/images/all-icon/support.png')}}" alt="icon">
                                 </div>
                                 <div class="cont">
-                                    <p>Need Help? call us free</p>
+                                    <p><?php echo $name ?></p>
                                     <span>321 325 5678</span>
                                 </div>
                             </div>
+                        <?php } ?>
+                        <?php
+                            $name = Session::get('customer_name');
+                            if($name){
+                        ?>
                             <div class="button float-left">
-                                <a href="#" class="main-btn">Apply Now</a>
+                                <a href="{{url('/logout')}}" class="main-btn">Đăng xuất</a>
                             </div>
+                        <?php }else{ ?>
+                            <div class="button float-left">
+                                <a href="{{url('/login')}}" class="main-btn">Đăng nhập</a>
+                            </div>
+                        <?php } ?>
                         </div>
                     </div>
                 </div> <!-- row -->
@@ -134,53 +129,25 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item">
-                                        <a class="active" href="index-2.html">Home</a>
-                                        <ul class="sub-menu">
-                                            <li><a class="active" href="index-2.html">Home 01</a></li>
-                                            <li><a href="index-3.html">Home 02</a></li>
-                                            <li><a href="index-4.html">Home 03</a></li>
-                                        </ul>
+                                        <a class="active" href="index-2.html">Trang chủ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="about.html">About us</a>
+                                        <a href="{{url('khoa-hoc')}}">Khoá học</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="/course">Courses</a>
+                                        <a href="events.html">Sự kiện</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="events.html">Events</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="events.html">Events</a></li>
-                                            <li><a href="events-singel.html">Event Singel</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="teachers.html">Our teachers</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="teachers.html">teachers</a></li>
-                                            <li><a href="teachers-singel.html">teacher Singel</a></li>
-                                        </ul>
+                                        <a href="teachers.html">Giáo viên</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="blog.html">Blog</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-singel.html">Blog Singel</a></li>
-                                        </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="shop.html">Shop</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="shop.html">Shop</a></li>
-                                            <li><a href="shop-singel.html">Shop Singel</a></li>
-                                        </ul>
+                                        <a href="contact.html">Liên hệ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="contact.html">Contact</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="contact-2.html">Contact Us 2</a></li>
-                                        </ul>
+                                        <a href="about.html">Về chúng tôi</a>
                                     </li>
                                 </ul>
                             </div>
@@ -392,6 +359,9 @@
     <!--====== Map js ======-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
     <script src="{{asset('../frontend/js/map-script.js')}}"></script>
+    <!-- <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script> -->
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
 
 </body>
 </html>

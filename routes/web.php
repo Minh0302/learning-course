@@ -9,6 +9,8 @@ use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\LectureController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,16 @@ use App\Http\Controllers\DocumentController;
 */
 
 Route::get('/',[HomeController::class,'index']);
+Route::get('/home',[HomeController::class,'index']);
+Route::get('/login',[LoginController::class,'login_index']);
+Route::get('/register',[LoginController::class,'register_index']);
+Route::post('/handle-register',[LoginController::class,'handle_register']);
+Route::post('/handle-login',[LoginController::class,'handle_login']);
+Route::get('/logout',[LoginController::class,'handle_logout']);
+Route::get('/khoa-hoc',[HomeController::class,'all_course']);
 Route::get('/khoa-hoc/{slug}/{id}',[HomeController::class,'detail_course']);
+Route::post('/comment-teacher',[CommentController::class,'comment_teacher']);
+
 
 
 Route::get('/admin',[AdminController::class,'index']);
