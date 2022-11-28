@@ -9,12 +9,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-banner-cont">
-                    <h2>Learn basic javascript</h2>
+                    <h2>{{$name_course->course_id}}</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Courses</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Learn basic javasript</li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/khoa-hoc')}}">Khoá học</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{$name_course->course_id}}</li>
                         </ol>
                     </nav>
                 </div> <!-- page banner cont -->
@@ -41,30 +41,34 @@
                             <li>
                                 <div class="teacher-name">
                                     <div class="thum">
-                                        <img src="{{asset('../frontend/images/course/teacher/t-1.jpg')}}" alt="" class="rounded-circle"Teacher">
+                                        @if(isset($detail->teacher_img))
+                                        <img src="{{asset('./uploads/'.$detail->teacher_img)}}" alt="" class="rounded-circle" width="50" height="50">
+                                        @else
+                                        <img src="{{asset('../teacher.jpg')}}" alt="" class="rounded-circle" width="50" height="50">
+                                        @endif
                                     </div>
                                     <div class="name">
-                                        <span>Teacher</span>
+                                        <span>Giáo viên</span>
                                         <h6>{{$detail->admin_name}}</h6>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="course-category">
-                                    <span>Category</span>
-                                    <h6>Programaming </h6>
+                                    <span>Khoá học</span>
+                                    <h6>{{$detail->course_id}}</h6>
                                 </div>
                             </li>
                             <li>
                                 <div class="review">
-                                    <span>Review</span>
+                                    <span>Đánh giá</span>
                                     <ul>
                                         <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        <li class="rating">(20 Reviws)</li>
+                                        <li class="rating">({{$count_comment}} Reviws)</li>
                                     </ul>
                                 </div>
                             </li>
@@ -72,19 +76,19 @@
                     </div> <!-- course terms -->
                     @endforeach
                     <div class="corses-singel-image pt-50">
-                        <img src="{{asset('../frontend/images/course/cu-1.jpg')}}" alt="Courses">
+                        <img src="{{asset('./uploads/'.$name_course->overview_img)}}" alt="Courses">
                     </div> <!-- corses singel image -->
 
                     <div class="corses-tab mt-30">
                         <ul class="nav nav-justified" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                                <a class="active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Tổng quát</a>
                             </li>
                             <li class="nav-item">
-                                <a id="curriculam-tab" data-toggle="tab" href="#curriculam" role="tab" aria-controls="curriculam" aria-selected="false">Curriculam</a>
+                                <a id="curriculam-tab" data-toggle="tab" href="#curriculam" role="tab" aria-controls="curriculam" aria-selected="false">Lộ trình</a>
                             </li>
                             <li class="nav-item">
-                                <a id="instructor-tab" data-toggle="tab" href="#instructor" role="tab" aria-controls="instructor" aria-selected="false">Instructor</a>
+                                <a id="instructor-tab" data-toggle="tab" href="#instructor" role="tab" aria-controls="instructor" aria-selected="false">Giới thiệu</a>
                             </li>
                             <li class="nav-item">
                                 <a id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
@@ -96,11 +100,11 @@
                             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                                 <div class="overview-description">
                                     <div class="singel-description pt-40">
-                                        <h6>Course Summery</h6>
+                                        <h6>Tóm tắt khoá học</h6>
                                         <p>{{$overview->summary}}</p>
                                     </div>
                                     <div class="singel-description pt-40">
-                                        <h6>Requrements</h6>
+                                        <h6>Yêu cầu khoá học</h6>
                                         <p>{{$overview->requirement}}</p>
                                     </div>
                                 </div> <!-- overview description -->
@@ -109,7 +113,7 @@
                             <div class="tab-pane fade" id="curriculam" role="tabpanel" aria-labelledby="curriculam-tab">
                                 <div class="curriculam-cont">
                                     <div class="title">
-                                        <h6>Learn basis Lecture Started</h6>
+                                        <h6>{{$name_course->course_id}}</h6>
                                     </div>
                                     <div class="accordion" id="accordionExample">
                                     @php
@@ -131,7 +135,7 @@
 
                                             <div id="collapseOne_{{$lecture->id}}" class="collapse <?php echo ($j++==1) ? "show" : ""?>" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    <p>Ut quis scelerisque risus, et viverra nisi. Phasellus ultricies luctus augue, eget maximus felis laoreet quis. Maecenasbibendum tempor eros.</p>
+                                                    <p>{{$lecture->lecture_desc}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,16 +144,21 @@
                                 </div> <!-- curriculam cont -->
                             </div>
                             <div class="tab-pane fade" id="instructor" role="tabpanel" aria-labelledby="instructor-tab">
+                                @foreach($details as $detail)
                                 <div class="instructor-cont">
                                     <div class="instructor-author">
                                         <div class="author-thum">
-                                            <img src="{{asset('../frontend/images/instructor/i-1.jpg')}}" alt="Instructor">
+                                            @if(isset($detail->teacher_img))
+                                            <img src="{{asset('./uploads/'.$detail->teacher_img)}}" alt="" class="rounded-circle" width="100" height="100">
+                                            @else
+                                            <img src="{{asset('../teacher.jpg')}}" alt="" class="rounded-circle" width="100" height="100">
+                                            @endif
                                         </div>
                                         <div class="author-name">
                                             <a href="#">
-                                                <h5>Sumon Hasan</h5>
+                                                <h5>{{$detail->admin_name}}</h5>
                                             </a>
-                                            <span>Senior WordPress Developer</span>
+                                            <span>Teacher</span>
                                             <ul class="social">
                                                 <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
                                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -159,9 +168,10 @@
                                         </div>
                                     </div>
                                     <div class="instructor-description pt-25">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus fuga ratione molestiae unde provident quibusdam sunt, doloremque. Error omnis mollitia, ex dolor sequi. Et, quibusdam excepturi. Animi assumenda, consequuntur dolorum odio sit inventore aliquid, optio fugiat alias. Veritatis minima, dicta quam repudiandae repellat non sit, distinctio, impedit, expedita tempora numquam?</p>
+                                        <p>{{$detail->about}}</p>
                                     </div>
                                 </div> <!-- instructor cont -->
+                                @endforeach
                             </div>
                             <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                                 <div class="reviews-cont">
@@ -174,7 +184,7 @@
                                             <div class="singel-reviews">
                                                 <div class="reviews-author">
                                                     <div class="author-thum">
-                                                        <img src="{{asset('../frontend/images/review/r-1.jpg')}}" alt="Reviews">
+                                                        <img src="{{asset('../user.png')}}" alt="Reviews" width="50" height="50">
                                                     </div>
                                                     <div class="author-name">
                                                         <h6>{{$comment->student_name}}</h6>
@@ -254,64 +264,42 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-6">
                         <div class="course-features mt-30">
-                            <h4>Course Features </h4>
+                            <h4>Khoá học </h4>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i>Duaration : <span>10 Hours</span></li>
-                                <li><i class="fa fa-clone"></i>Leactures : <span>{{$lecture_count->lecture}}</span></li>
-                                <li><i class="fa fa-beer"></i>Quizzes : <span>{{$question_count->question}}</span></li>
-                                <li><i class="fa fa-user-o"></i>Students : <span>100</span></li>
+                                <!-- <li><i class="fa fa-clock-o"></i>Duaration : <span>10 Hours</span></li> -->
+                                <li><i class="fa fa-clone"></i>Bài học : <span>{{$lecture_count->lecture}}</span></li>
+                                <li><i class="fa fa-beer"></i>Câu hỏi : <span>{{$question_count->question}}</span></li>
+                                <li><i class="fa fa-user-o"></i>Học sinh : <span>100</span></li>
                             </ul>
                             <div class="price-button pt-10">
-                                <span>Price : <b>$25</b></span>
-                                <a href="#" class="main-btn">Enroll Now</a>
+                                <span>Price : <b>Free</b></span>
+                                @if(Session::get('customer_name'))
+                                <a href="{{url('khoa-hoc/exam',['slug' =>Str::slug($detail->course_id),'id' =>$detail->id])}}" class="main-btn">Làm bài test</a>
+                                @else
+                                <a href="{{url('/login')}}" class="main-btn">Làm bài test</a>
+                                @endif
                             </div>
                         </div> <!-- course features -->
                     </div>
                     <div class="col-lg-12 col-md-6">
                         <div class="You-makelike mt-30">
-                            <h4>You make like </h4>
+                            <h4>Có thể bạn thích </h4>
+                            @foreach($course_like as $like)
                             <div class="singel-makelike mt-20">
                                 <div class="image">
                                     <img src="{{asset('../frontend/images/your-make/y-1.jpg')}}" alt="Image">
                                 </div>
                                 <div class="cont">
-                                    <a href="#">
-                                        <h4>Introduction to machine languages</h4>
+                                    <a href="{{url('khoa-hoc',['slug' =>Str::slug($like->course_id),'id' =>$like->id])}}">
+                                        <h4>{{$like->course_id}}</h4>
                                     </a>
                                     <ul>
                                         <li><a href="#"><i class="fa fa-user"></i>31</a></li>
-                                        <li>$50</li>
+                                        <li>Free</li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="singel-makelike mt-20">
-                                <div class="image">
-                                    <img src="{{asset('../frontend/images/your-make/y-1.jpg')}}" alt="Image">
-                                </div>
-                                <div class="cont">
-                                    <a href="#">
-                                        <h4>How to build a basis game with java </h4>
-                                    </a>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-user"></i>31</a></li>
-                                        <li>$50</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="singel-makelike mt-20">
-                                <div class="image">
-                                    <img src="{{asset('../frontend/images/your-make/y-1.jpg')}}" alt="Image">
-                                </div>
-                                <div class="cont">
-                                    <a href="#">
-                                        <h4>Basic accounting from primary</h4>
-                                    </a>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-user"></i>31</a></li>
-                                        <li>$50</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -321,7 +309,7 @@
             <div class="col-lg-8">
                 <div class="releted-courses pt-95">
                     <div class="title">
-                        <h3>Releted Courses</h3>
+                        <h3>Khoá học liên quan</h3>
                     </div>
                     <div class="row">
                         @foreach ($course_related as $related)
@@ -344,15 +332,21 @@
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
                                     <span>(20 Reviws)</span><br>
-                                    <a href="courses-singel.html">
+                                    <a href="{{url('khoa-hoc',['slug' =>Str::slug($related->course_id),'id' =>$related->id])}}">
                                         <h4>{{$related->course_id}}</h4>
                                     </a>
                                     <div class="course-teacher">
                                         <div class="thum">
-                                            <a href="#"><img src="{{asset('../frontend/images/course/teacher/t-2.jpg')}}" alt="teacher"></a>
+                                            <a href="{{url('giao-vien',['id' =>$related->id])}}">
+                                                @if(isset($related->teacher_img))
+                                                <img src="{{asset('./uploads/'.$related->teacher_img)}}" alt="" width="40" height="40">
+                                                @else
+                                                <img src="{{asset('../teacher.jpg')}}" alt="" width="40" height="40">
+                                                @endif
+                                            </a>
                                         </div>
                                         <div class="name">
-                                            <a href="#">
+                                            <a href="{{url('giao-vien',['id' =>$related->id])}}">
                                                 <h6>{{$related->admin_name}}</h6>
                                             </a>
                                         </div>

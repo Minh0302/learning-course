@@ -17,7 +17,7 @@ class CommentController extends Controller
         $comment->date = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
         $comment->teacher_id = $data['teacher_id'];
         $comment->save();
-        Toastr::success('Thêm khoá học thành công!', 'Thành công');
+        Toastr::success('Thêm bình luận thành công!', 'Thành công');
         return redirect()->back(); 
     }
 }

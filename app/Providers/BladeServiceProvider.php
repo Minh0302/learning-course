@@ -33,6 +33,11 @@ class BladeServiceProvider extends ServiceProvider
                     return true;
                 }
             }
+            if(Auth::user()){
+                if(Auth::user()->hasAnyRoles($expression)){
+                    return true;
+                }
+            }
             return false;
         });
     }

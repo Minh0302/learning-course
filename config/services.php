@@ -29,5 +29,10 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'google' => [
+        'client_id' => '240650606698-m15el4gatho50aulk4pskg74bv7flcnu.apps.googleusercontent.com',  //client face của bạn
+        'client_secret' => 'pOcFouOlEjZR5O2bno7XngxV',  //client app service face của bạn
+        'redirect' => 'http://127.0.0.1:8000/google/callback' //callback trả về
+    ],
 
 ];

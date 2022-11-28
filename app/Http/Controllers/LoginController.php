@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use Session;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Models\Social; //sử dụng model Social
+use Socialite;
 session_start();
 
 class LoginController extends Controller
@@ -38,7 +40,7 @@ class LoginController extends Controller
         if($login){
             $login_count = $login->count();
             if($login_count>0){
-                Session::put('customer_id',$login->customer_id);
+                Session::put('id',$login->id);
                 Session::put('customer_name',$login->customer_name);
                 Toastr::success('Đăng nhập thành công!', 'Thành công');
                 return Redirect('/home');
@@ -51,5 +53,50 @@ class LoginController extends Controller
     public function handle_logout(){
         Session::flush();
         return Redirect('/home');
+    }
+    public function login_google(){
+        return Socialite::driver('google')->redirect();
+    }
+    public function callback_google(){
+        $users = Socialite::driver('google')->stateless()->user(); 
+        $authUser = $this->findOrCreateUser($users,'google');
+        if($authUser){
+            $account_name = Customer::where('id',$authUser->user)->first();
+            Session::put('customer_name',$account_name->customer_name);
+            Session::put('id',$account_name->id);
+        }elseif($login_gg){
+            $account_name = Customer::where('id',$authUser->user)->first();
+            Session::put('customer_name',$account_name->customer_name);
+            Session::put('id',$account_name->id);
+        }
+        Toastr::success('Đăng nhập thành công!', 'Thành công');
+        return redirect('/');
+
+
+    }
+    public function findOrCreateUser($users,$provider){
+        $authUser = Social::where('provider_user_id', $users->id)->first();
+        if($authUser){
+            return $authUser;
+        }else{
+            $login_gg = new Social([
+            'provider_user_id' => $users->id,
+            'provider' => strtoupper($provider)
+            ]);
+
+            $orang = Customer::where('customer_email',$users->email)->first();
+
+            if(!$orang){
+                $orang = Customer::create([
+                    'customer_name' => $users->name,
+                    'customer_email' => $users->email,
+                    'customer_password' => '',
+                    'customer_phone' => ''
+                ]);
+            }
+            $login_gg->login()->associate($orang);
+            $login_gg->save();
+            return $login_gg;
+        }
     }
 }

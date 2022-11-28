@@ -8,10 +8,18 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
 use App\Models\Roles;
+use App\Models\ProfileTeacher;
 use App\Models\Courses;
+use App\Models\Customer;
+use App\Models\Contact;
+use App\Models\Blog;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 use Auth;
+use Mail;
+use App\Imports\ExcelImport;
+use App\Exports\ExcelExport;
+use Excel;
 
 class AdminController extends Controller
 {
@@ -25,7 +33,28 @@ class AdminController extends Controller
     // }
     public function dashboard(){
         // $this->AuthLogin();
-        return view('admin.dashboard');
+        $count_teacher = Admin::whereNotIn("id", ['1'])->get()->count();
+        $count_student = Customer::all()->count();
+        $count_contact = Contact::all()->count();
+        $count_blog = Blog::all()->count();
+        $students = DB::table('customers')
+        ->select('customers.id','customers.customer_name','lecture_course.lecture_name')
+        ->distinct()
+        ->leftJoin('history_exam','history_exam.student_id','=','customers.id')
+        ->join('lecture_course','lecture_course.id','=','history_exam.lecture_id')
+        ->join('admin','admin.id','=','lecture_course.teacher_id')
+        ->join('teacher_course','teacher_course.teacher_id','=','admin.id')
+        ->where('admin.id', Auth::user()->id)
+        ->get();
+        $students_admin = DB::table('customers')
+        ->select('customers.id','customers.customer_name','lecture_course.lecture_name')
+        ->distinct()
+        ->leftJoin('history_exam','history_exam.student_id','=','customers.id')
+        ->join('lecture_course','lecture_course.id','=','history_exam.lecture_id')
+        ->join('admin','admin.id','=','lecture_course.teacher_id')
+        ->join('teacher_course','teacher_course.teacher_id','=','admin.id')
+        ->get();
+        return view('admin.dashboard')->with(compact('count_teacher','count_student','count_contact','count_blog','students','students_admin'));
     }
     public function index(){
         return view('admin_login');
@@ -107,7 +136,26 @@ class AdminController extends Controller
         if($request->admin_role){
             $user->roles()->attach(Roles::where('roles_name', 'admin')->first());
         }
+        
+        $email = $request->admin_email;
+        $email_array = array(
+            'teacher_name' => $user->admin_name
+        );
+        if ($email) {
+            Mail::send('admin.email.index',['email' => $email,'email_array' => $email_array], function ($m)use ($email)  { 
+                $m->to($email)->subject('Your Reminder!');
+            });
+        }
+
         Toastr::success('Assign roles thành công!', 'Thành công');
         return redirect()->back();
+    }
+    public function export_csv(){
+        return Excel::download(new ExcelExport , 'question.xlsx');
+    }
+    public function import_csv(Request $request){
+        $path = $request->file('file')->getRealPath();
+        Excel::import(new ExcelImport, $path);
+        return back();
     }
 }
