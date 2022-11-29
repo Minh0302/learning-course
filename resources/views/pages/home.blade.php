@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="category-text pt-40">
-                        <h2>Best platform to learn everything</h2>
+                        <h2>Nền tảng tốt nhất để học mọi thứ</h2>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-8 offset-2">
@@ -27,7 +27,7 @@
                                         <img src="frontend/images/all-icon/ctg-1.png" alt="Icon">
                                     </span>
                                     <span class="cont">
-                                        <span>Language</span>
+                                        <span>Trao đổi</span>
                                     </span>
                                 </span> <!-- singel category -->
                             </a>
@@ -39,7 +39,7 @@
                                         <img src="frontend/images/all-icon/ctg-2.png" alt="Icon">
                                     </span>
                                     <span class="cont">
-                                        <span>Business</span>
+                                        <span>Phấn đấu</span>
                                     </span>
                                 </span> <!-- singel category -->
                             </a>
@@ -51,7 +51,7 @@
                                         <img src="frontend/images/all-icon/ctg-3.png" alt="Icon">
                                     </span>
                                     <span class="cont">
-                                        <span>Literature</span>
+                                        <span>Học tập</span>
                                     </span>
                                 </span> <!-- singel category -->
                             </a>
@@ -183,7 +183,7 @@
             <div class="col-lg-5 offset-lg-1 order-first order-lg-last">
                 <div class="feature pt-50">
                     <div class="feature-title">
-                        <h3>Our Facilities</h3>
+                        <h3>Website chúng tôi</h3>
                     </div>
                     <ul>
                         <li>
@@ -192,7 +192,7 @@
                                     <img src="frontend/images/all-icon/f-1.png" alt="icon">
                                 </div>
                                 <div class="cont">
-                                    <h4>Global Certificate</h4>
+                                    <h4>Chứng chỉ toàn cầu</h4>
                                     <p>Gravida nibh vel velit auctor aliquetn auci elit cons solliazcitudirem sem quibibendum sem nibhutis.</p>
                                 </div>
                             </div> <!-- singel feature -->
@@ -203,7 +203,7 @@
                                     <img src="frontend/images/all-icon/f-2.png" alt="icon">
                                 </div>
                                 <div class="cont">
-                                    <h4>Alumni Support</h4>
+                                    <h4>Đội ngũ giáo viên</h4>
                                     <p>Gravida nibh vel velit auctor aliquetn auci elit cons solliazcitudirem sem quibibendum sem nibhutis.</p>
                                 </div>
                             </div> <!-- singel feature -->
@@ -214,7 +214,7 @@
                                     <img src="frontend/images/all-icon/f-3.png" alt="icon">
                                 </div>
                                 <div class="cont">
-                                    <h4>Books & Library</h4>
+                                    <h4>Khoá học chất lượng</h4>
                                     <p>Gravida nibh vel velit auctor aliquetn auci elit cons solliazcitudirem sem quibibendum sem nibhutis.</p>
                                 </div>
                             </div> <!-- singel feature -->

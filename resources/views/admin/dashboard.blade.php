@@ -126,8 +126,9 @@
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">Học sinh</th>
+                                            <th scope="col">Khoá học</th>
                                             <th scope="col">Bài học</th>
-                                            <th scope="col">Số lần thi</th>
+                                            <!-- <th scope="col">Số lần thi</th> -->
                                             <!-- <th scope="col">Số câu đúng</th> -->
                                         </tr>
                                     </thead>
@@ -137,8 +138,9 @@
                                         <tr>
                                             <th scope="row"><a href="#">{{$student->id}}</a></th>
                                             <td>{{$student->customer_name}}</td>
+                                            <td>{{$student->course_id}}</td>
                                             <td><a href="#" class="text-primary">{{$student->lecture_name}}</a></td>
-                                            <td></td>
+                                            <!-- <td></td> -->
                                             <!-- <td><span class="badge bg-success">Approved</span></td> -->
                                         </tr>
                                         @endforeach
@@ -148,8 +150,9 @@
                                         <tr>
                                             <th scope="row"><a href="#">{{$admin->id}}</a></th>
                                             <td>{{$admin->customer_name}}</td>
+                                            <td>{{$admin->course_id}}</td>
                                             <td><a href="#" class="text-primary">{{$admin->lecture_name}}</a></td>
-                                            <td></td>
+                                            <!-- <td></td> -->
                                             <!-- <td><span class="badge bg-success">Approved</span></td> -->
                                         </tr>
                                         @endforeach

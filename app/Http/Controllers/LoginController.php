@@ -27,7 +27,7 @@ class LoginController extends Controller
         $data['customer_password'] = md5($request->customer_password);
 
         $customer_id = DB::table('customers')->insertGetId($data);
-        Session::put('customer_id',$customer_id);
+        Session::put('id',$customer_id);
         Session::put('customer_name',$request->customer_name);
 
         return Redirect('/home');

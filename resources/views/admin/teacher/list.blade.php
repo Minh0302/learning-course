@@ -19,8 +19,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Datatables</h5>
-                        <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+                        <h5 class="card-title">Danh sách giáo viên</h5>
 
                         <!-- Table with stripped rows -->
                         <table class="table">
@@ -44,7 +43,7 @@
                                         {{$user->course_id }}
                                     </td>
                                     <td>
-                                        <input type="submit" value="Chi tiết" class="btn btn-sm btn-secondary">
+                                        <a href="{{url('admin/giao-vien/chi-tiet',[$user->teacher_id])}}" class="active styling_edit" ui-toggle-class=""><i class="fa fa-eye text-success text-active" style="font-size: 25px"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

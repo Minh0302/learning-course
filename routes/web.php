@@ -67,6 +67,7 @@ Route::get('/admin-logout',[AdminController::class,'admin_logout']);
 Route::post('/admin/teacher-assign',[AdminController::class,'teacher_assign']);
 Route::post('/import-csv',[AdminController::class,'import_csv']);
 Route::post('/export-csv',[AdminController::class,'export_csv']);
+Route::get('/admin/giao-vien/chi-tiet/{id}',[AdminController::class,'admin_detail_teacher']);
 
 // Authentication role
 Route::get('/admin/teacher/assign',[AdminController::class,'assign']);

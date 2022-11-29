@@ -269,7 +269,7 @@
                                 <!-- <li><i class="fa fa-clock-o"></i>Duaration : <span>10 Hours</span></li> -->
                                 <li><i class="fa fa-clone"></i>Bài học : <span>{{$lecture_count->lecture}}</span></li>
                                 <li><i class="fa fa-beer"></i>Câu hỏi : <span>{{$question_count->question}}</span></li>
-                                <li><i class="fa fa-user-o"></i>Học sinh : <span>100</span></li>
+                                <li><i class="fa fa-user-o"></i>Học sinh : <span>{{$student_count->student}}</span></li>
                             </ul>
                             <div class="price-button pt-10">
                                 <span>Price : <b>Free</b></span>

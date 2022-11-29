@@ -13,6 +13,8 @@ use App\Models\Courses;
 use App\Models\Customer;
 use App\Models\Contact;
 use App\Models\Blog;
+use App\Models\Overview;
+use App\Models\Lecture;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 use Auth;
@@ -38,7 +40,7 @@ class AdminController extends Controller
         $count_contact = Contact::all()->count();
         $count_blog = Blog::all()->count();
         $students = DB::table('customers')
-        ->select('customers.id','customers.customer_name','lecture_course.lecture_name')
+        ->select('customers.id','customers.customer_name','lecture_course.lecture_name','teacher_course.course_id')
         ->distinct()
         ->leftJoin('history_exam','history_exam.student_id','=','customers.id')
         ->join('lecture_course','lecture_course.id','=','history_exam.lecture_id')
@@ -47,7 +49,7 @@ class AdminController extends Controller
         ->where('admin.id', Auth::user()->id)
         ->get();
         $students_admin = DB::table('customers')
-        ->select('customers.id','customers.customer_name','lecture_course.lecture_name')
+        ->select('customers.id','customers.customer_name','lecture_course.lecture_name','teacher_course.course_id')
         ->distinct()
         ->leftJoin('history_exam','history_exam.student_id','=','customers.id')
         ->join('lecture_course','lecture_course.id','=','history_exam.lecture_id')
@@ -157,5 +159,20 @@ class AdminController extends Controller
         $path = $request->file('file')->getRealPath();
         Excel::import(new ExcelImport, $path);
         return back();
+    }
+    public function admin_detail_teacher($id){
+        $detail = DB::table('admin')
+        ->select('admin.id','admin.admin_name','admin.admin_email','admin.admin_phone','teacher_course.course_id','overview_course.overview_img','profile_teacher.teacher_img','profile_teacher.about','profile_teacher.achievements','profile_teacher.objectives')
+        ->join('teacher_course','teacher_course.teacher_id','=','admin.id')
+        ->join('overview_course','overview_course.teacher_id','=','admin.id')
+        ->join('profile_teacher','profile_teacher.teacher_id','=','admin.id')
+        ->where('admin.id',$id)->first();
+        $overview = Overview::where('teacher_id', $id)->first();
+        $lectures = Lecture::where('teacher_id', $id)->orderBy('id','ASC')->get();
+        $question_count = DB::table('lecture_course')
+        ->select(DB::raw('COUNT(question_course.id) as question'))
+        ->join('question_course','question_course.lecture_id','=','lecture_course.id')
+        ->where('lecture_course.teacher_id',$id)->first();
+        return view('admin.teacher.edit')->with(compact('detail','overview','lectures','question_count'));
     }
 }

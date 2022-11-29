@@ -77,6 +77,11 @@ class HomeController extends Controller
         ->select(DB::raw('COUNT(question_course.id) as question'))
         ->join('question_course','question_course.lecture_id','=','lecture_course.id')
         ->where('lecture_course.teacher_id',$id)->first();
+        $student_count = DB::table('lecture_course')
+        ->select(DB::raw('COUNT(history_exam.id) as student'))
+        ->distinct()
+        ->join('history_exam','history_exam.lecture_id','=','lecture_course.id')
+        ->where('lecture_course.teacher_id',$id)->first();
         $lecture_count = DB::table('lecture_course')
         ->select(DB::raw('COUNT(lecture_course.id) as lecture'))
         ->where('lecture_course.teacher_id',$id)->first();
@@ -110,7 +115,7 @@ class HomeController extends Controller
         ->whereNotIn('admin.id',['1'])->limit(3)->get();
         $count_comment = Comment::where('teacher_id',$id)->count();
 
-        return view('pages.course.details_course')->with(compact('details','overviews','lectures','question_count','lecture_count','comments','course_related','name_course','count_comment','course_like'));
+        return view('pages.course.details_course')->with(compact('student_count','details','overviews','lectures','question_count','lecture_count','comments','course_related','name_course','count_comment','course_like'));
     }
     public function all_course(){
         $all_course = DB::table('admin')
